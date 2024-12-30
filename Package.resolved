@@ -1,5 +1,5 @@
 {
-  "originHash" : "10604441add95052c192fa1c4ce7fb95e3f1ba643d324d0708448f720b183fdf",
+  "originHash" : "926ee55d086bc3c7a5cf0df94258e72202d90000125471df7bbbfb1919beab8a",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -51,7 +51,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/coenttb-web.git",
       "state" : {
-        "branch" : "coenttb-server-extraction",
+        "branch" : "main",
         "revision" : "4118318ead4ebe6b629e3d1f8550f93df43147e3"
       }
     },
@@ -301,7 +301,7 @@
     {
       "identity" : "swift-html",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-html",
+      "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
         "revision" : "cb8d1b8fe55fd827df971a2982f09aa096394796"

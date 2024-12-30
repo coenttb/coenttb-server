@@ -6,6 +6,6 @@
 //
 
 
-@_exported import Fluent
-@_exported import FluentPostgresDriver
+@_exported @preconcurrency import Fluent
+@_exported @preconcurrency import FluentPostgresDriver
 @_exported import DatabaseHelpers

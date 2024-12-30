@@ -23,7 +23,7 @@ import FoundationNetworking
 
 @_exported import Coenttb_Database
 
-@_exported import Vapor
+@_exported @preconcurrency import Vapor
 @_exported import VaporRouting
 @_exported import Coenttb_Vapor
 
