@@ -22,15 +22,6 @@ extension EnvVars {
 }
 
 extension EnvVars {
-    public enum AppEnv: String, Codable {
-        case development
-        case production
-        case testing
-        case staging
-    }
-}
-
-extension EnvVars {
     public var allowedInsecureHosts: [String]? {
         get { self["ALLOWED_INSECURE_HOSTS"]?.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) } }
         set { self["ALLOWED_INSECURE_HOSTS"] = newValue?.joined(separator: ",") }
