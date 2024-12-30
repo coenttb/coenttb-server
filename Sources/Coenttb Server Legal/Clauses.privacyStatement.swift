@@ -9,8 +9,8 @@ import Dependencies
 import Foundation
 import CoenttbMarkdown
 import Languages
-import CoenttbWebTranslations
-import CoenttbWebHTML
+import Coenttb_Web_Translations
+import Coenttb_Web_HTML
 
 extension Clauses {
     public static func privacyStatement(

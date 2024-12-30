@@ -10,7 +10,7 @@
 import FoundationNetworking
 #endif
 
-@_exported import CoenttbWeb
+@_exported import Coenttb_Web
 
 @_exported import Coenttb_Server_Router
 @_exported import Coenttb_Server_EnvVars

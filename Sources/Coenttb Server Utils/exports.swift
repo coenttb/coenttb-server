@@ -5,4 +5,4 @@
 //  Created by Coen ten Thije Boonkkamp on 30/12/2024.
 //
 
-@_exported import CoenttbWebUtils
+@_exported import Coenttb_Web_Utils

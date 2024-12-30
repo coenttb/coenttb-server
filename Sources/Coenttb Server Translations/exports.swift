@@ -6,4 +6,4 @@
 //
 
 @_exported import Languages
-@_exported import CoenttbWebTranslations
+@_exported import Coenttb_Web_Translations

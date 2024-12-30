@@ -33,26 +33,17 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
-    static var coenttbWeb: Self { .product(name: "CoenttbWeb", package: "coenttb-web") }
-    static var coenttbWebEnvVars: Self { .product(name: "CoenttbWebEnvVars", package: "coenttb-web") }
-    static var coenttbWebHTML: Self { .product(name: "CoenttbWebHTML", package: "coenttb-web") }
-    static var coenttbWebDependencies: Self { .product(name: "CoenttbWebDependencies", package: "coenttb-web") }
-    static var coenttbWebModels: Self { .product(name: "CoenttbWebModels", package: "coenttb-web") }
-    static var coenttbWebTranslations: Self { .product(name: "CoenttbWebTranslations", package: "coenttb-web") }
-    static var coenttbWebLegal: Self { .product(name: "CoenttbWebLegal", package: "coenttb-web") }
-    static var coenttbWebUtils: Self { .product(name: "CoenttbWebUtils", package: "coenttb-web") }
-}
-
-extension Target.Dependency {
-    static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var swiftWeb: Self { .product(name: "SwiftWeb", package: "swift-web") }
-    static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
-    static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
-    static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
+    static var coenttbWeb: Self { .product(name: "Coenttb Web", package: "coenttb-web") }
+    static var coenttbWebEnvVars: Self { .product(name: "Coenttb Web EnvVars", package: "coenttb-web") }
+    static var coenttbWebHTML: Self { .product(name: "Coenttb Web HTML", package: "coenttb-web") }
+    static var coenttbWebDependencies: Self { .product(name: "Coenttb Web Dependencies", package: "coenttb-web") }
+    static var coenttbWebModels: Self { .product(name: "Coenttb Web Models", package: "coenttb-web") }
+    static var coenttbWebTranslations: Self { .product(name: "Coenttb Web Translations", package: "coenttb-web") }
+    static var coenttbWebLegal: Self { .product(name: "Coenttb Web Legal", package: "coenttb-web") }
+    static var coenttbWebUtils: Self { .product(name: "Coenttb Web Utils", package: "coenttb-web") }
     static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
     static var fluent: Self { .product(name: "Fluent", package: "fluent") }
     static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
-    static var language: Self { .product(name: "Languages", package: "swift-language") }
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var vapor: Self { .product(name: "Vapor", package: "vapor") }
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
@@ -67,7 +58,22 @@ let package = Package(
         .iOS(.v17)
     ],
     products: [
-        .library(name: .coenttbServer, targets: [.coenttbServer]),
+        .library(
+            name: .coenttbServer,
+            targets: [
+                .coenttbServer,
+                .coenttbServerEnvVars,
+                .coenttbServerHTML,
+                .coenttbServerDependencies,
+                .coenttbServerModels,
+                .coenttbServerTranslations,
+                .coenttbVapor,
+                .coenttbDatabase,
+                .coenttbServerUtils,
+                .coenttbServerLegal,
+                .coenttbServerRouter,
+            ]
+        ),
         .library(name: .coenttbServerEnvVars, targets: [.coenttbServerEnvVars]),
         .library(name: .coenttbServerHTML, targets: [.coenttbServerHTML]),
         .library(name: .coenttbServerDependencies, targets: [.coenttbServerDependencies]),
@@ -80,29 +86,17 @@ let package = Package(
         .library(name: .coenttbServerRouter, targets: [.coenttbServerRouter]),
     ],
     dependencies: [
-        .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-date", branch: "main"),
-        .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-web.git", branch: "coenttb-server-extraction"),
-        .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
-        .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
-        .package(url: "https://github.com/pointfreeco/swift-url-routing", from: "0.6.0"),
         .package(url: "https://github.com/pointfreeco/vapor-routing.git", from: "0.1.3"),
-        .package(url: "https://github.com/pointfreeco/swift-sharing.git", from: "1.0.4"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths.git", from: "1.5.6"),
-        .package(url: "https://github.com/pointfreeco/swift-prelude.git", branch: "main"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay.git", from: "1.4.3"),
-        .package(url: "https://github.com/vapor/postgres-kit", from: "2.12.0"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.7.2"),
+        .package(url: "https://github.com/vapor/postgres-kit", from: "2.12.0"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.102.1"),
     ],
     targets: [
-        
         .target(
             name: .coenttbServer,
             dependencies: [
@@ -123,16 +117,12 @@ let package = Package(
             dependencies: [
                 .coenttbWebEnvVars,
                 .coenttbServerModels,
-                .environmentVariables,
             ]
         ),
         .target(
             name: .coenttbServerHTML,
             dependencies: [
-                .swiftWeb,
                 .coenttbWebHTML,
-                .coenttbHtml,
-                .coenttbMarkdown,
                 .coenttbServerTranslations,
                 .coenttbServerDependencies,
             ]
@@ -140,19 +130,15 @@ let package = Package(
         .target(
             name: .coenttbServerLegal,
             dependencies: [
-                .swiftWeb,
                 .coenttbWebLegal,
                 .coenttbServerHTML,
-                .coenttbMarkdown,
                 .coenttbServerTranslations,
-                .coenttbHtml,
                 .vapor,
             ]
         ),
         .target(
             name: .coenttbServerDependencies,
             dependencies: [
-                .swiftWeb,
                 .coenttbWebDependencies,
                 .coenttbServerModels,
                 .fluent,
@@ -164,14 +150,12 @@ let package = Package(
         .target(
             name: .coenttbServerUtils,
             dependencies: [
-                .swiftWeb,
                 .coenttbWebUtils
             ]
         ),
         .target(
             name: .coenttbServerModels,
             dependencies: [
-                .swiftWeb,
                 .coenttbWebModels,
                 .fluent,
             ]
@@ -179,14 +163,12 @@ let package = Package(
         .target(
             name: .coenttbServerTranslations,
             dependencies: [
-                .language,
                 .coenttbWebTranslations
             ]
         ),
         .target(
             name: .coenttbVapor,
             dependencies: [
-                .swiftWeb,
                 .coenttbServerDependencies,
                 .coenttbServerRouter,
                 .coenttbServerEnvVars,
@@ -198,7 +180,6 @@ let package = Package(
         .target(
             name: .coenttbDatabase,
             dependencies: [
-                .swiftWeb,
                 .fluent,
                 .fluentPostgresDriver,
             ]
@@ -206,8 +187,6 @@ let package = Package(
         .target(
             name: .coenttbServerRouter,
             dependencies: [
-                .language,
-                .swiftWeb,
                 .coenttbServerTranslations,
                 .coenttbServerDependencies,
                 .coenttbServerModels,

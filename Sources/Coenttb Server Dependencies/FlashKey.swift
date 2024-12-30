@@ -7,7 +7,7 @@
 //
 import Dependencies
 import Foundation
-import CoenttbWebModels
+import Coenttb_Web_Models
 
 private enum FlashKey: DependencyKey {
     static let liveValue: Flash? = nil
