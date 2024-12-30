@@ -87,7 +87,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/coenttb-web.git", branch: "coenttb-server-extraction"),
+        .package(url: "https://github.com/coenttb/coenttb-web.git", branch: "main"),
         .package(url: "https://github.com/pointfreeco/vapor-routing.git", from: "0.1.3"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths.git", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay.git", from: "1.4.3"),
