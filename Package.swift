@@ -48,7 +48,7 @@ extension Target.Dependency {
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
     static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
-    static var nioDependencies: Self { .product(name: "NIODependencies", package: "pointfree-server") }
+    static var pointfreeServer: Self { .product(name: "PointFree Server", package: "pointfree-server") }
 }
 
 let package = Package(
@@ -146,7 +146,7 @@ let package = Package(
                 .postgresKit,
                 .vapor,
                 .issueReporting,
-                .nioDependencies,
+                .pointfreeServer,
             ]
         ),
         .target(
@@ -171,6 +171,7 @@ let package = Package(
         .target(
             name: .coenttbVapor,
             dependencies: [
+                .coenttbWebUtils,
                 .coenttbServerDependencies,
                 .coenttbServerRouter,
                 .coenttbServerEnvVars,

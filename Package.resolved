@@ -1,5 +1,5 @@
 {
-  "originHash" : "20ab4fc5ae1f2a853a4b763240c858214e55507ebd867bc88d979f1a1bf60fc8",
+  "originHash" : "32936b7d7c7661e4dac850e0dd9c0608eee4eb321135afab4401c6caeec3b1df",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -17,15 +17,6 @@
       "state" : {
         "revision" : "e048c8ee94967e8d8a1c2ec0e1156d6f7fa34d31",
         "version" : "1.20.0"
-      }
-    },
-    {
-      "identity" : "bluecryptor",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/IBM-Swift/BlueCryptor.git",
-      "state" : {
-        "revision" : "ee5880e031da4c609f372cf7472476ab51d5dd19",
-        "version" : "1.0.200"
       }
     },
     {
@@ -124,7 +115,7 @@
       "location" : "https://github.com/coenttb/pointfree-server.git",
       "state" : {
         "branch" : "main",
-        "revision" : "b91123001ac998323542061fc3fce9af54754e2f"
+        "revision" : "bb190d45bec678940aa18e62374e3e16b6c51acf"
       }
     },
     {
@@ -476,15 +467,6 @@
       "state" : {
         "revision" : "c8a44d836fe7913603e246acab7c528c2e780168",
         "version" : "1.4.0"
-      }
-    },
-    {
-      "identity" : "swift-tagged",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-tagged.git",
-      "state" : {
-        "revision" : "3907a9438f5b57d317001dc99f3f11b46882272b",
-        "version" : "0.10.0"
       }
     },
     {

@@ -7,10 +7,9 @@
 
 import CoenttbHTML
 import Vapor
-import VaporRouting
 
 extension HTMLDocument {
-    public func encodeResponse(for request: Request) async throws -> Response {
+    public func encodeResponse(for request: Request) async throws -> Vapor.Response {
         var headers = HTTPHeaders()
         headers.add(name: .contentType, value: "text/html")
         let bytes: ContiguousArray<UInt8> = self.render()

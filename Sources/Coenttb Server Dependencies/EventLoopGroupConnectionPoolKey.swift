@@ -7,7 +7,6 @@
 
 import Dependencies
 @preconcurrency import PostgresKit
-import NIODependencies
 
 extension DependencyValues {
     public var eventLoopGroupConnectionPool: EventLoopGroupConnectionPool<PostgresConnectionSource> {

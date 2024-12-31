@@ -9,6 +9,7 @@ import Foundation
 import Vapor
 import Dependencies
 import Coenttb_Server_Dependencies
+import Coenttb_Server_Utils
 
 extension Application {
     public static func main(

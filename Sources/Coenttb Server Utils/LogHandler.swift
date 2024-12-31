@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Logging
 
 public struct CoenttbLogHandler: LogHandler {
     // MARK: - Properties

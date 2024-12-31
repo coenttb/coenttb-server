@@ -7,6 +7,7 @@
 
 import Foundation
 import Vapor
+import Coenttb_Server_Utils
 
 extension Request {
     /// Attempts to extract geolocation information from request headers
@@ -27,7 +28,9 @@ extension Request {
         
         return nil
     }
-    
+}
+
+extension Request {
     /// Gets the real IP address considering various headers
     public var realIP: String {
         // Try Cloudflare header first
@@ -47,5 +50,13 @@ extension Request {
         
         // Fall back to the direct remote address
         return remoteAddress?.hostname ?? "unknown"
+    }
+}
+
+extension Request {
+    public struct GeoLocation: Sendable, Hashable {
+        public let country: String?
+        public let region: String?
+        public let city: String?
     }
 }

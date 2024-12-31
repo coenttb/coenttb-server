@@ -7,21 +7,20 @@
 
 import Foundation
 
-
-struct RequestTimer {
+public struct RequestTimer {
     private let startTime: DispatchTime
     
-    init() {
+    public init() {
         self.startTime = DispatchTime.now()
     }
     
-    var milliseconds: Int64 {
+    public var milliseconds: Int64 {
         let end = DispatchTime.now()
         let nanoTime = end.uptimeNanoseconds - startTime.uptimeNanoseconds
         return Int64(nanoTime) / 1_000_000 // Convert nanoseconds to milliseconds
     }
     
-    var microseconds: Int64 {
+    public var microseconds: Int64 {
         let end = DispatchTime.now()
         let nanoTime = end.uptimeNanoseconds - startTime.uptimeNanoseconds
         return Int64(nanoTime) / 1_000 // Convert nanoseconds to microseconds

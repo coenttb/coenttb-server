@@ -7,8 +7,7 @@
 
 import Dependencies
 import Foundation
-import NIODependencies
-import PostgresKit
+import PointFree_Server
 
 extension MainEventLoopGroupKey: @retroactive DependencyKey {
     public static var liveValue: any EventLoopGroup {
