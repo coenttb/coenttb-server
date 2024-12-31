@@ -107,7 +107,7 @@ let package = Package(
         .target(
             name: .coenttbServerHTML,
             dependencies: [
-                .coenttbWebHTML,
+                .coenttbWeb,
                 .coenttbServerTranslations,
                 .coenttbServerDependencies,
             ]
@@ -115,7 +115,7 @@ let package = Package(
         .target(
             name: .coenttbServerDependencies,
             dependencies: [
-                .coenttbWebDependencies,
+                .coenttbWeb,
                 .coenttbServerModels,
                 .postgresKit,
                 .issueReporting,
