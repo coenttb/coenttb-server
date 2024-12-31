@@ -5,8 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 04-01-2024.
 //
 
-import Dependencies
-import Foundation
+import Coenttb_Web
 @preconcurrency import PostgresKit
 import IssueReporting
 

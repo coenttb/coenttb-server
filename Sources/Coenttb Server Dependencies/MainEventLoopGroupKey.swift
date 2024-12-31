@@ -5,8 +5,7 @@
 //  Created by PointFree
 //
 
-import Dependencies
-import Foundation
+import Coenttb_Web
 import PointFree_Server
 
 extension MainEventLoopGroupKey: @retroactive DependencyKey {

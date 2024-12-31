@@ -19,7 +19,6 @@ import FoundationNetworking
 @_exported import Coenttb_Server_Models
 @_exported import Coenttb_Server_Translations
 @_exported import Coenttb_Server_Utils
-@_exported import Coenttb_Server_Legal
 
 @_exported import Coenttb_Database
 

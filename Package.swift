@@ -95,6 +95,7 @@ let package = Package(
                 .coenttbServerTranslations,
                 .coenttbDatabase,
                 .coenttbServerUtils,
+                .rateLimiter
             ]
         ),
         .target(
@@ -107,7 +108,7 @@ let package = Package(
         .target(
             name: .coenttbServerHTML,
             dependencies: [
-                .coenttbWeb,
+                .coenttbWebHTML,
                 .coenttbServerTranslations,
                 .coenttbServerDependencies,
             ]
@@ -143,6 +144,7 @@ let package = Package(
         .target(
             name: .coenttbDatabase,
             dependencies: [
+                .coenttbWeb
             ]
         ),
         .target(
