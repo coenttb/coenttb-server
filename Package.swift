@@ -48,7 +48,7 @@ extension Target.Dependency {
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
     static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
-//    static var pointfreeServer: Self { .product(name: "PointFree Server", package: "pointfree-server") }
+    static var nioDependencies: Self { .product(name: "NIODependencies", package: "pointfree-server") }
 }
 
 let package = Package(
@@ -88,7 +88,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-web.git", branch: "main"),
-//        .package(url: "https://github.com/coenttb/pointfree-server.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/pointfree-server.git", branch: "main"),
         .package(url: "https://github.com/pointfreeco/vapor-routing.git", from: "0.1.3"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths.git", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay.git", from: "1.4.3"),
@@ -146,6 +146,7 @@ let package = Package(
                 .postgresKit,
                 .vapor,
                 .issueReporting,
+                .nioDependencies,
             ]
         ),
         .target(
