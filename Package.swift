@@ -95,6 +95,7 @@ let package = Package(
                 .coenttbServerTranslations,
                 .coenttbDatabase,
                 .coenttbServerUtils,
+                .coenttbServerRouter,
                 .rateLimiter
             ]
         ),
