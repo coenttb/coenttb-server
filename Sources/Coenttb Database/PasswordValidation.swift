@@ -1,7 +1,6 @@
 import Dependencies
 import Foundation
 import Logging
-@preconcurrency import Fluent
 import Languages
 
 func isValidPassword(_ password: String) throws -> Bool {

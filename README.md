@@ -1,69 +1,58 @@
-# coenttb-web
+# coenttb-server
 
-`coenttb-web` builds on [coenttb/swift-web](https://www.github.com/coenttb/swift-web) with additional features and integrations for Vapor and other frameworks.
+`coenttb-server`: Build fast, modern, and safe servers that are a joy to write.
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
 This package is currently in active development and is subject to frequent changes. Features and APIs may change without prior notice until a stable release is available.
 
-## Key Features
-- **Built entirely in Swift**: Leverages the power of Swift and Vapor to deliver backend capabilities without JavaScript dependencies.
-- **Functional Elegance**: Clean and testable architecture inspired by PointFree's best practices.
-- **Hypermodular**: Highly modular design, allowing for reusable components that are easy to test, maintain, and integrate.
-- **Third Party Integrations**: Support for third-party services such as Stripe, Mailgun, Hotjar, Google Analytics, and Postgres.
-
 ## Project Structure
 
-The project is organized into multiple modules for clarity and modularity:
-
-### Sources
-- `CoenttbEnvVars`: Handles environment variables and configurations.
-- `CoenttbServerRouter`: Manages server routing logic.
-- `CoenttbVapor`: Extending Vapor with commonly used functionality.
-- `CoenttbWebAccount` & `CoenttbWebAccountLive`: Account management.
-- `CoenttbWebBlog`: Blog functionality.
-- `CoenttbWebDatabase`: Database interactions.
-- `CoenttbWebDependencies`: Handles Dependencies.
-- `CoenttbWebHTML`: Builds on [coenttb-html](https://www.github.com/coenttb/coenttb-html) and adds functionality for building websites.
-- `CoenttbWebLegal`: Common website legal documents.
-- `CoenttbWebModels`: Common models and data structures.
-- `CoenttbWebNewsletter`: Newsletter service.
-- `CoenttbWebStripe` & `CoenttbWebStripeLive`: Stripe payment integration.
-- `CoenttbWebTranslations`: Builds on [swift-languages](https://www.github.com/coenttb/swift-languages). Internationalization and localization specific to website development.
-- `CoenttbWebUtils`: Builds on [coenttb-utils](https://www.github.com/coenttb/coenttb-utils) with functionality specific to web development.
-- **Third-Party Integrations**:
-  - `GitHub`
-  - `GoogleAnalytics`
-  - `Hotjar`
-  - `Mailgun`
-  - `Postgres`
+- `Coenttb Server EnvVars`: Builds on [coenttb-web/Coenttb Web EnvVars](https://www.github.com/coenttb/coenttb-web) and adds functionality specific to server development.
+- `Coenttb Server Router`: Type-safe router parsing and printing.
+- `Coenttb Server Database`: Common database helpers.
+- `Coenttb Server Dependencies`: Builds on [coenttb-web/Coenttb Web Dependencies](https://www.github.com/coenttb/coenttb-web), and adds functionality specific to server development.
+- `Coenttb Server HTML`: Builds on [coenttb-html](https://www.github.com/coenttb/coenttb-html) and adds functionality specific to server development.
+- `Coenttb Server Models`: Builds on [coenttb-web/Coenttb Web Models](https://www.github.com/coenttb/coenttb-web) and adds functionality specific to server development.
+- `Coenttb Server Translations`: Builds on [coenttb-web/Coenttb Web Translations](https://www.github.com/coenttb/coenttb-web) and adds functionality specific to server development.
+- `Coenttb Server Utils`: Builds on [coenttb-web/Coenttb Web Utils](https://www.github.com/coenttb/coenttb-web) and adds functionality specific to server development.
 
 ## Installation
 
-You can add `coenttb-web` to an Xcode project by including it as a package dependency:
+You can add `coenttb-server` to an Xcode project by including it as a package dependency:
 
-Repository URL: https://github.com/coenttb/coenttb-web
+Repository URL: https://github.com/coenttb/coenttb-server
 
 For a Swift Package Manager project, add the dependency in your Package.swift file:
 ```
 dependencies: [
-  .package(url: "https://github.com/coenttb/coenttb-web", branch: "main")
+  .package(url: "https://github.com/coenttb/coenttb-server", branch: "main")
 ]
+
+.product(name: "Coenttb Server", package: "coenttb-server")
 ```
 
-## Example
-
-Refer to [coenttb/coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server) for an example of how to use coenttb-web.
+Include `import Coenttb_Server` to import all modules. For more precise control, you can instead import only a specific library: `import Coenttb_Server_Translations`.
 
 ## Related projects
 
-* [coenttb/pointfree-html](https://www.github.com/coenttb/coenttb/pointfree-html): A Swift DSL for type-safe HTML forked from [pointfreeco/swift-html](https://www.github.com/pointfreeco/swift-html) and updated to the version on [pointfreeco/pointfreeco](https://github.com/pointfreeco/pointfreeco).
+### The coenttb stack
+
 * [swift-css](https://www.github.com/coenttb/swift-css): A Swift DSL for type-safe CSS.
 * [swift-html](https://www.github.com/coenttb/swift-html): A Swift DSL for type-safe HTML & CSS, integrating [swift-css](https://www.github.com/coenttb/swift-css) and [pointfree-html](https://www.github.com/coenttb/pointfree-html).
-* [coenttb-html](https://www.github.com/coenttb/coenttb-html): Extends [swift-html](https://www.github.com/coenttb/swift-html) with additional functionality and integrations for HTML, Markdown, Email, and printing HTML to PDF.
-* [swift-web](https://www.github.com/coenttb/swift-web): Modular tools to simplify web development in Swift forked from  [pointfreeco/swift-web](https://www.github.com/pointfreeco/swift-web), and updated for use in [coenttb-web](https://www.github.com/coenttb/coenttb-web).
-* [coenttb-web](https://www.github.com/coenttb/coenttb-web): A collection of features for your Swift server, with integrations for Vapor.
-* [coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server): The backend server for coenttb.com, written entirely in Swift and powered by [Vapor](https://www.github.com/vapor/vapor) and [coenttb-web](https://www.github.com/coenttb/coenttb-web).
+* [swift-web](https://www.github.com/coenttb/swift-web): Foundational tools for web development in Swift.
+* [coenttb-html](https://www.github.com/coenttb/coenttb-html): Builds on [swift-html](https://www.github.com/coenttb/swift-html), and adds functionality for HTML, Markdown, Email, and printing HTML to PDF.
+* [coenttb-web](https://www.github.com/coenttb/coenttb-web): Builds on [swift-web](https://www.github.com/coenttb/swift-web), and adds functionality for web development.
+* [coenttb-server](https://www.github.com/coenttb/coenttb-server): Build fast, modern, and safe servers that are a joy to write. `coenttb-server` builds on [coenttb-web](https://www.github.com/coenttb/coenttb-web), and adds functionality for server development.
+* [coenttb-vapor](https://www.github.com/coenttb/coenttb-server-vapor): `coenttb-server-vapor` builds on [coenttb-server](https://www.github.com/coenttb/coenttb-server), and adds functionality and integrations with Vapor and Fluent.
+* [coenttb-com-server](https://www.github.com/coenttb/coenttb-com-server): The backend server for coenttb.com, written entirely in Swift and powered by [coenttb-server-vapor](https://www.github.com/coenttb-server-vapor).
+
+### PointFree foundations
+* [coenttb/pointfree-html](https://www.github.com/coenttb/coenttb/pointfree-html): A Swift DSL for type-safe HTML, forked from [pointfreeco/swift-html](https://www.github.com/pointfreeco/swift-html) and updated to the version on [pointfreeco/pointfreeco](https://github.com/pointfreeco/pointfreeco).
+* [coenttb/pointfree-web](https://www.github.com/coenttb/coenttb/pointfree-html): Foundational tools for web development in Swift, forked from  [pointfreeco/swift-web](https://www.github.com/pointfreeco/swift-web).
+* [coenttb/pointfree-server](https://www.github.com/coenttb/coenttb/pointfree-html): Foundational tools for server development in Swift, forked from  [pointfreeco/swift-web](https://www.github.com/pointfreeco/swift-web).
+
+### Other
 * [swift-languages](https://www.github.com/coenttb/swift-languages): A cross-platform translation library written in Swift.
 
 ## Feedback is much appreciated!
