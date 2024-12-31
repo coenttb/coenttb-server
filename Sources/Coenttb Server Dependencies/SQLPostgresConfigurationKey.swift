@@ -6,8 +6,6 @@
 //
 
 import Dependencies
-@preconcurrency import Fluent
-@preconcurrency import FluentKit
 import Foundation
 @preconcurrency import PostgresKit
 import IssueReporting
