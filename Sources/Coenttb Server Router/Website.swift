@@ -31,6 +31,12 @@ extension Website {
         
         let pageRouter: PageRouter
         
+        public init(
+            pageRouter: URLRouting.Router<Page>
+        ) {
+            self.pageRouter = pageRouter
+        }
+        
         public var body: some URLRouting.Router<Website> {
             Parse(.memberwise(Website.init)) {
                 Optionally {
