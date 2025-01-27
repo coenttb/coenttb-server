@@ -32,7 +32,7 @@ extension Website {
         let pageRouter: PageRouter
         
         public init(
-            pageRouter: URLRouting.Router<Page>
+            pageRouter: PageRouter
         ) {
             self.pageRouter = pageRouter
         }
