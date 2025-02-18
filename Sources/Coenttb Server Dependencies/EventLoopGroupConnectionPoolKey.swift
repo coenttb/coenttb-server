@@ -17,6 +17,12 @@ extension DependencyValues {
 
 public enum EventLoopGroupConnectionPoolKey: TestDependencyKey {
     public static var testValue: EventLoopGroupConnectionPool<PostgresConnectionSource> {
+        liveValue
+    }
+}
+
+extension EventLoopGroupConnectionPoolKey: DependencyKey {
+    public static var liveValue: EventLoopGroupConnectionPool<PostgresConnectionSource> {
         @Dependency(\.mainEventLoopGroup) var mainEventLoopGroup
         @Dependency(\.sqlConfiguration) var sqlConfiguration
         
