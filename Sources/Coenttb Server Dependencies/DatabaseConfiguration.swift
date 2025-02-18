@@ -22,18 +22,25 @@ public struct DatabaseConfiguration: Sendable {
     }
 }
 
-public enum DatabaseConfigurationKey {}
 
-extension DatabaseConfigurationKey: TestDependencyKey {
+extension DatabaseConfiguration: TestDependencyKey {
     public static let testValue = DatabaseConfiguration(
         maxConnectionsPerEventLoop: 1,
         connectionPoolTimeout: .seconds(10)
     )
 }
 
+extension DatabaseConfiguration: DependencyKey {
+    public static let liveValue = DatabaseConfiguration(
+        maxConnectionsPerEventLoop: 1,
+        connectionPoolTimeout: .seconds(10)
+    )
+}
+
+
 extension DependencyValues {
     public var databaseConfiguration: DatabaseConfiguration {
-        get { self[DatabaseConfigurationKey.self] }
-        set { self[DatabaseConfigurationKey.self] = newValue }
+        get { self[DatabaseConfiguration.self] }
+        set { self[DatabaseConfiguration.self] = newValue }
     }
 }
