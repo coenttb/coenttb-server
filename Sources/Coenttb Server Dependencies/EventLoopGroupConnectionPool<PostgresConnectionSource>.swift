@@ -8,7 +8,7 @@
 import Dependencies
 @preconcurrency import PostgresKit
 
-private enum EventLoopGroupConnectionPoolKey {}
+enum EventLoopGroupConnectionPoolKey {}
 
 extension DependencyValues {
     public var eventLoopGroupConnectionPool: EventLoopGroupConnectionPool<PostgresConnectionSource> {
@@ -26,7 +26,7 @@ extension EventLoopGroupConnectionPool<PostgresConnectionSource> {
     static var `default`: Self {
         @Dependency(\.mainEventLoopGroup) var mainEventLoopGroup
         @Dependency(\.sqlConfiguration) var sqlConfiguration
-        
+
         return .init(
             source: PostgresConnectionSource(sqlConfiguration: sqlConfiguration),
             on: mainEventLoopGroup

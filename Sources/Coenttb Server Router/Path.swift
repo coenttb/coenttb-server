@@ -10,168 +10,134 @@ import URLRouting
 
 extension Path<PathBuilder.Component<String>> {
     
-    nonisolated(unsafe)
-    public static let well_known: Path<PathBuilder.Component<String>> = Path {
-        ".well-known"
+    @inlinable public static var well_known: Path<PathBuilder.Component<String>> {
+        Path { ".well-known" }
     }
     
-    nonisolated(unsafe)
-    public static let appleAppSiteAssociation: Path<PathBuilder.Component<String>> = Path {
-        ".well-known/apple-app-site-association"
+    @inlinable public static var appleAppSiteAssociation: Path<PathBuilder.Component<String>> {
+        Path { ".well-known/apple-app-site-association" }
     }
     
-    nonisolated(unsafe)
-    public static let readmeMd: Path<PathBuilder.Component<String>> = Path {
-        "README.md"
+    @inlinable public static var readmeMd: Path<PathBuilder.Component<String>> {
+        Path { "README.md" }
     }
     
-    nonisolated(unsafe)
-    public static let licenseTxt: Path<PathBuilder.Component<String>> = Path {
-        "LICENSE.txt"
+    @inlinable public static var licenseTxt: Path<PathBuilder.Component<String>> {
+        Path { "LICENSE.txt" }
     }
     
-    nonisolated(unsafe)
-    public static let changelogMd: Path<PathBuilder.Component<String>> = Path {
-        "CHANGELOG.md"
+    @inlinable public static var changelogMd: Path<PathBuilder.Component<String>> {
+        Path { "CHANGELOG.md" }
     }
     
     // SEO and Social Media Integration Files
-    nonisolated(unsafe)
-    public static let openSearchXml: Path<PathBuilder.Component<String>> = Path {
-        "opensearch.xml"
+    @inlinable public static var openSearchXml: Path<PathBuilder.Component<String>> {
+        Path { "opensearch.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let rssXml: Path<PathBuilder.Component<String>> = Path {
-        "rss.xml"
+    @inlinable public static var rssXml: Path<PathBuilder.Component<String>> {
+        Path { "rss.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let atomXml: Path<PathBuilder.Component<String>> = Path {
-        "atom.xml"
+    @inlinable public static var atomXml: Path<PathBuilder.Component<String>> {
+        Path { "atom.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let faviconIco: Path<PathBuilder.Component<String>> = Path {
-        "favicon.ico"
+    @inlinable public static var faviconIco: Path<PathBuilder.Component<String>> {
+        Path { "favicon.ico" }
     }
     
-    nonisolated(unsafe)
-    public static let ogImage: Path<PathBuilder.Component<String>> = Path {
-        "og-image.jpg"
+    @inlinable public static var ogImage: Path<PathBuilder.Component<String>> {
+        Path { "og-image.jpg" }
     }
     
-    nonisolated(unsafe)
-    public static let robotsTxt: Path<PathBuilder.Component<String>> = Path {
-        "robots.txt"
+    @inlinable public static var robotsTxt: Path<PathBuilder.Component<String>> {
+        Path { "robots.txt" }
     }
     
-    nonisolated(unsafe)
-    public static let sitemapXml: Path<PathBuilder.Component<String>> = Path {
-        "sitemap.xml"
+    @inlinable public static var sitemapXml: Path<PathBuilder.Component<String>> {
+        Path { "sitemap.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let documentation: Path<PathBuilder.Component<String>> = Path {
-        "documentation".slug()
+    @inlinable public static var documentation: Path<PathBuilder.Component<String>> {
+        Path { "documentation" }
     }
     
-    nonisolated(unsafe)
-    public static let assets: Path<PathBuilder.Component<String>> = Path {
-        "assets".slug()
+    @inlinable public static var assets: Path<PathBuilder.Component<String>> {
+        Path { "assets" }
     }
-    nonisolated(unsafe)
-    public static let css: Path<PathBuilder.Component<String>> = Path {
-        "css".slug()
+    @inlinable public static var css: Path<PathBuilder.Component<String>> {
+        Path { "css" }
     }
-    nonisolated(unsafe)
-    public static let scss: Path<PathBuilder.Component<String>> = Path {
-        "scss".slug()
+    @inlinable public static var scss: Path<PathBuilder.Component<String>> {
+        Path { "scss" }
     }
-    nonisolated(unsafe)
-    public static let bootstrap: Path<PathBuilder.Component<String>> = Path {
-        "bootstrap".slug()
+    @inlinable public static var bootstrap: Path<PathBuilder.Component<String>> {
+        Path { "bootstrap" }
     }
-    nonisolated(unsafe)
-    public static let js: Path<PathBuilder.Component<String>> = Path {
-        "js".slug()
+    @inlinable public static var js: Path<PathBuilder.Component<String>> {
+        Path { "js" }
     }
     
-    nonisolated(unsafe)
-    public static let file: Path<PathBuilder.Component<String>> = Path {
-        "file".slug()
+    @inlinable public static var file: Path<PathBuilder.Component<String>> {
+        Path { "file" }
     }
     
-    nonisolated(unsafe)
-    public static let favicon: Path<PathBuilder.Component<String>> = Path {
-        "favicon".slug()
+    @inlinable public static var favicon: Path<PathBuilder.Component<String>> {
+        Path { "favicon" }
     }
     
-    nonisolated(unsafe)
-    public static let logo: Path<PathBuilder.Component<String>> = Path {
-        "logo".slug()
+    @inlinable public static var logo: Path<PathBuilder.Component<String>> {
+        Path { "logo" }
     }
     
-    nonisolated(unsafe)
-    public static let image: Path<PathBuilder.Component<String>> = Path {
-        "img".slug()
+    @inlinable public static var image: Path<PathBuilder.Component<String>> {
+        Path { "img" }
     }
     
-    nonisolated(unsafe)
-    public static let img: Path<PathBuilder.Component<String>> = .image
+    @inlinable public static var img: Path<PathBuilder.Component<String>> { .image }
     
-    nonisolated(unsafe)
-    public static let apple_developer_merchantid_domain_association: Path<PathBuilder.Component<String>> = Path {
-        "apple-developer-merchantid-domain-association"
+    @inlinable public static var apple_developer_merchantid_domain_association: Path<PathBuilder.Component<String>> {
+        Path { "apple-developer-merchantid-domain-association" }
     }
     
-    nonisolated(unsafe)
-    public static let manifestJson: Path<PathBuilder.Component<String>> = Path {
-        "manifest.json"
+    @inlinable public static var manifestJson: Path<PathBuilder.Component<String>> {
+        Path { "manifest.json" }
     }
     
-    nonisolated(unsafe)
-    public static let humansTxt: Path<PathBuilder.Component<String>> = Path {
-        "humans.txt"
+    @inlinable public static var humansTxt: Path<PathBuilder.Component<String>> {
+        Path { "humans.txt" }
     }
     
-    nonisolated(unsafe)
-    public static let crossdomainXml: Path<PathBuilder.Component<String>> = Path {
-        "crossdomain.xml"
+    @inlinable public static var crossdomainXml: Path<PathBuilder.Component<String>> {
+        Path { "crossdomain.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let api: Path<PathBuilder.Component<String>> = Path {
-        "api".slug()
+    @inlinable public static var api: Path<PathBuilder.Component<String>> {
+        Path { "api" }
     }
     
-    nonisolated(unsafe)
-    public static let graphql: Path<PathBuilder.Component<String>> = Path {
-        "graphql".slug()
+    @inlinable public static var graphql: Path<PathBuilder.Component<String>> {
+        Path { "graphql" }
     }
     
-    nonisolated(unsafe)
-    public static let opensearchXml: Path<PathBuilder.Component<String>> = Path {
-        "opensearch.xml"
+    @inlinable public static var opensearchXml: Path<PathBuilder.Component<String>> {
+        Path { "opensearch.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let browserconfigXml: Path<PathBuilder.Component<String>> = Path {
-        "browserconfig.xml"
+    @inlinable public static var browserconfigXml: Path<PathBuilder.Component<String>> {
+        Path { "browserconfig.xml" }
     }
     
-    nonisolated(unsafe)
-    public static let siteVerification: Path<PathBuilder.Component<String>> = Path {
-        "site-verification".slug()
+    @inlinable public static var siteVerification: Path<PathBuilder.Component<String>> {
+        Path { "site-verification" }
     }
     
-    nonisolated(unsafe)
-    public static let error404: Path<PathBuilder.Component<String>> = Path {
-        "404".slug()
+    @inlinable public static var error404: Path<PathBuilder.Component<String>> {
+        Path { "404" }
     }
     
-    nonisolated(unsafe)
-    public static let error500: Path<PathBuilder.Component<String>> = Path {
-        "500".slug()
+    @inlinable public static var error500: Path<PathBuilder.Component<String>> {
+        Path { "500" }
     }
 }

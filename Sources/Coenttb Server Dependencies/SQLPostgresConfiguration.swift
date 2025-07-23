@@ -5,9 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 04-01-2024.
 //
 
-import Coenttb_Web
-@preconcurrency import PostgresKit
+import Dependencies
 import IssueReporting
+@preconcurrency import PostgresKit
 
 extension DependencyValues {
     public var sqlConfiguration: SQLPostgresConfiguration {
@@ -17,7 +17,7 @@ extension DependencyValues {
 }
 
 public enum SQLPostgresConfigurationKey: TestDependencyKey {
-    public static let testValue: SQLPostgresConfiguration = {
+    public static var testValue: SQLPostgresConfiguration {
         reportIssue(
           """
           You need to provide a custom SQLPostgresConfiguration.
@@ -27,9 +27,9 @@ public enum SQLPostgresConfigurationKey: TestDependencyKey {
           line: #line,
           column: #column
         )
-        
+
         fatalError()
-    }()
+    }
 }
 
 extension SQLPostgresConfiguration {
@@ -39,18 +39,18 @@ extension SQLPostgresConfiguration {
     ) -> Self {
         guard !emergencyMode
         else { fatalError() }
-        
+
         var sqlConfiguration = try! SQLPostgresConfiguration(url: postgresDatabaseUrl)
-        
+
         if postgresDatabaseUrl.contains("amazonaws.com") {
             var tlsConfig: TLSConfiguration = .makeClientConfiguration()
             tlsConfig.certificateVerification = .none
-            
+
             let nioSSLContext = try? NIOSSLContext(configuration: tlsConfig)
-            
+
             sqlConfiguration.coreConfiguration.tls = nioSSLContext.map { .require($0) } ?? .disable
         }
-        
+
         return sqlConfiguration
     }
 }

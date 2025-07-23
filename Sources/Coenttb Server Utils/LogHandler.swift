@@ -9,20 +9,18 @@ import Foundation
 import Logging
 
 public struct CoenttbLogHandler: LogHandler {
-    // MARK: - Properties
     private let label: String
     private let queue: DispatchQueue
-    private let logDateFormatter: DateFormatter
+    private let dateFormatter: DateFormatter
     
     public var logLevel: Logger.Level
+    public var metadataProvider: Logger.MetadataProvider?
     
     private var _metadata: Logger.Metadata
     public var metadata: Logger.Metadata {
         get { queue.sync { _metadata } }
         set { queue.sync { _metadata = newValue } }
     }
-    
-    public var metadataProvider: Logger.MetadataProvider?
     
     public init(
         label: String,
@@ -33,10 +31,8 @@ public struct CoenttbLogHandler: LogHandler {
         self.logLevel = logLevel
         self.metadataProvider = metadataProvider
         self._metadata = [:]
-        
         self.queue = DispatchQueue(label: "com.coenttb.logging.\(label)")
-        
-        self.logDateFormatter = .log
+        self.dateFormatter = .log
     }
     
     public subscript(metadataKey metadataKey: String) -> Logger.Metadata.Value? {
@@ -54,42 +50,29 @@ public struct CoenttbLogHandler: LogHandler {
         line: UInt
     ) {
         queue.sync {
-            let timestamp = timestamp()
-            let mergedMetadata = Self.prepareMetadata(
-                base: _metadata,
-                provider: metadataProvider,
-                explicit: explicitMetadata
-            )
-            
-            let levelString = formatLevel(level)
-            let sourceLocation = "\(source):\(line)"
-            
+            let timestamp = dateFormatter.string(from: Date())
+            let mergedMetadata = self.mergedMetadata(explicitMetadata)
             let components = [
                 timestamp,
-                levelString,
-                "[\(sourceLocation)]",
+                level.formatted,
+                "[\(source):\(line)]",
                 message.description,
                 mergedMetadata
             ].compactMap { $0 }
             
             let fullMessage = components.joined(separator: " | ")
-            
             FileHandle.standardError.write(Data((fullMessage + "\n").utf8))
         }
     }
     
-    private static func prepareMetadata(
-        base: Logger.Metadata,
-        provider: Logger.MetadataProvider?,
-        explicit: Logger.Metadata?
-    ) -> String? {
-        var metadata = base
+    private func mergedMetadata(_ explicitMetadata: Logger.Metadata?) -> String? {
+        var metadata = _metadata
         
-        if let provided = provider?.get(), !provided.isEmpty {
+        if let provided = metadataProvider?.get(), !provided.isEmpty {
             metadata.merge(provided) { _, new in new }
         }
         
-        if let explicit = explicit, !explicit.isEmpty {
+        if let explicit = explicitMetadata, !explicit.isEmpty {
             metadata.merge(explicit) { _, new in new }
         }
         
@@ -100,24 +83,21 @@ public struct CoenttbLogHandler: LogHandler {
             .map { "\($0.key)=\($0.value)" }
             .joined(separator: ", ")
     }
-    
-    private func timestamp() -> String {
-        logDateFormatter.string(from: Date())
-    }
-    
-    private func formatLevel(_ level: Logger.Level) -> String {
-        switch level {
-        case .trace:    return "TRACE"
-        case .debug:    return "DEBUG"
-        case .info:     return "INFO "
-        case .notice:   return "NOTCE"
-        case .warning:  return "WARN "
-        case .error:    return "ERROR"
+}
+
+extension Logger.Level {
+    public var formatted: String {
+        switch self {
+        case .trace: return "TRACE"
+        case .debug: return "DEBUG"
+        case .info: return "INFO "
+        case .notice: return "NOTCE"
+        case .warning: return "WARN "
+        case .error: return "ERROR"
         case .critical: return "CRIT "
         }
     }
 }
-
 
 extension DateFormatter {
     static let log: DateFormatter = {
@@ -127,5 +107,4 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-
 }

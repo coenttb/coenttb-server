@@ -5,14 +5,14 @@
 //  Created by Coen ten Thije Boonkkamp on 18/12/2024.
 //
 
-import Foundation
 import Dependencies
+import Foundation
 import NIO
 
 public struct DatabaseConfiguration: Sendable {
     public var maxConnectionsPerEventLoop: Int
     public var connectionPoolTimeout: TimeAmount
-    
+
     public init(
         maxConnectionsPerEventLoop: Int,
         connectionPoolTimeout: TimeAmount
@@ -22,25 +22,23 @@ public struct DatabaseConfiguration: Sendable {
     }
 }
 
-
-extension DatabaseConfiguration: TestDependencyKey {
-    public static let testValue = DatabaseConfiguration(
-        maxConnectionsPerEventLoop: 1,
-        connectionPoolTimeout: .seconds(10)
-    )
-}
-
-extension DatabaseConfiguration: DependencyKey {
-    public static let liveValue = DatabaseConfiguration(
-        maxConnectionsPerEventLoop: 1,
-        connectionPoolTimeout: .seconds(10)
-    )
-}
-
-
 extension DependencyValues {
     public var databaseConfiguration: DatabaseConfiguration {
         get { self[DatabaseConfiguration.self] }
         set { self[DatabaseConfiguration.self] = newValue }
+    }
+}
+
+extension DatabaseConfiguration: TestDependencyKey {
+    public static var testValue: Self { .default }
+    public static var liveValue: Self { .default }
+}
+
+extension DatabaseConfiguration {
+    public static var `default`: DatabaseConfiguration {
+        DatabaseConfiguration(
+            maxConnectionsPerEventLoop: 1,
+            connectionPoolTimeout: .seconds(10)
+        )
     }
 }

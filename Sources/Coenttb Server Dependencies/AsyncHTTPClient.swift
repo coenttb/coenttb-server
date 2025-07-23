@@ -1,19 +1,18 @@
 import AsyncHTTPClient
 import Dependencies
 
+enum HTTPClientKey {}
+
 extension DependencyValues {
     public var httpClient: HTTPClient {
-        get { self[HTTPClient.self] }
-        set { self[HTTPClient.self] = newValue }
+        get { self[HTTPClientKey.self] }
+        set { self[HTTPClientKey.self] = newValue }
     }
 }
 
-extension HTTPClient: @retroactive TestDependencyKey {
-    public static var testValue: HTTPClient { .default }
-}
-
-extension HTTPClient: @retroactive DependencyKey {
+extension HTTPClientKey: DependencyKey {
     public static var liveValue: HTTPClient { .default }
+    public static var testValue: HTTPClient { .default }
 }
 
 extension HTTPClient {

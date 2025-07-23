@@ -28,15 +28,15 @@ extension Website {
     public struct Router<
         PageRouter: URLRouting.Router<Page>
     >: ParserPrinter {
-        
+
         let pageRouter: PageRouter
-        
+
         public init(
             pageRouter: PageRouter
         ) {
             self.pageRouter = pageRouter
         }
-        
+
         public var body: some URLRouting.Router<Website> {
             Parse(.memberwise(Website.init)) {
                 Optionally {
