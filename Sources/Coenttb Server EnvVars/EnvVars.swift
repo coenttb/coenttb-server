@@ -5,7 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 03/06/2022.
 //
 
-import Coenttb_Web_EnvVars
+import EnvVars
 import Foundation
 import Logging
 

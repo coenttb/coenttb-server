@@ -7,18 +7,55 @@
 
 import Foundation
 
-extension URL {
-    /// Updates the host of a given URL to the canonical host.
-    public static func canonical(url: URL, canonicalHost: String) -> URL? {
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        
-        let hostAndPort = canonicalHost.split(separator: ":").map(String.init)
-        components?.host = hostAndPort.first
-        
-        if hostAndPort.count > 1, let port = Int(hostAndPort[1]) {
-            components?.port = port
-        }
+public enum URLCanonicalError: Error, Equatable {
+  case invalidURL
+  case emptyHost
+  case invalidPort(String)
+  case malformedIPv6
+  case portOutOfRange(Int)
+}
 
-        return components?.url
+extension URL {
+    public static func canonical(
+        url: URL,
+        canonicalHost: String
+    ) throws(URLCanonicalError) -> URL {
+    guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+      throw URLCanonicalError.invalidURL
     }
+    
+    guard !canonicalHost.isEmpty else {
+      throw URLCanonicalError.emptyHost
+    }
+    
+    // IPv6 addresses use bracket notation [host]:port
+    if canonicalHost.hasPrefix("[") {
+      throw URLCanonicalError.malformedIPv6 // IPv6 not supported yet
+    }
+    
+    // Handle regular host:port
+    let parts = canonicalHost.split(separator: ":", maxSplits: 1).map(String.init)
+    components.host = parts.first
+    
+    if parts.count == 2 {
+      let portString = parts[1]
+      guard let port = Int(portString) else {
+        throw URLCanonicalError.invalidPort(portString)
+      }
+      
+      guard port > 0 && port <= 65535 else {
+        throw URLCanonicalError.portOutOfRange(port)
+      }
+      
+      components.port = port
+    } else {
+      components.port = nil
+    }
+    
+    guard let resultURL = components.url else {
+      throw URLCanonicalError.invalidURL
+    }
+    
+    return resultURL
+  }
 }
