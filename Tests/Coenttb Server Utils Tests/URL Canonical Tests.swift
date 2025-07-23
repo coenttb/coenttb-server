@@ -75,7 +75,7 @@ struct URLCanonicalTests {
     func urlCanonicalHandlesMultipleColonsInHost() {
         let originalURL = URL(string: "https://example.com/path")!
         
-        #expect(throws: URLCanonicalError.invalidPort("extra")) {
+        #expect(throws: URLCanonicalError.invalidPort("8080:extra")) {
             try URL.canonical(url: originalURL, canonicalHost: "canonical.com:8080:extra")
         }
     }
