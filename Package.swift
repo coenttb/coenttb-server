@@ -22,7 +22,6 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var asyncHttpClient: Self { .product(name: "AsyncHTTPClient", package: "async-http-client") }
-    static var coenttbWebTranslations: Self { .product(name: "Coenttb Web Translations", package: "coenttb-web") }
     static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
