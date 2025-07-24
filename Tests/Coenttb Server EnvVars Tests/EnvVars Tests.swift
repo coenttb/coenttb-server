@@ -25,8 +25,7 @@ let packageRoot = URL(fileURLWithPath: #filePath)
     "EnvVars Tests",
     .dependencies {
         $0.envVars = try! .live(
-            localDevelopment: packageRoot.appendingPathComponent(".env.example"),
-            requiredKeys: []
+            localEnvFile: packageRoot.appendingPathComponent(".env.example")
         )
     }
 )

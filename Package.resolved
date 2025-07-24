@@ -1,5 +1,5 @@
 {
-  "originHash" : "067dbe101e3d22b3a6716e22525e8477cf968e2e357bc0c9de3cb0ce8a78c952",
+  "originHash" : "bc87678088a5cf9a7b5d012f1878d7f56c17ee4ff3da378dc430f7df40c0e565",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -130,10 +130,10 @@
     {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
+      "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "c1805596154bb3a265fd91b8ac0c4433b4348fb0",
-        "version" : "1.2.0"
+        "revision" : "8c0c0a8b49e080e54e5e328cc552821ff07cd341",
+        "version" : "1.2.1"
       }
     },
     {
@@ -166,10 +166,10 @@
     {
       "identity" : "swift-environment-variables",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-environment-variables.git",
+      "location" : "https://github.com/coenttb/swift-environment-variables",
       "state" : {
         "branch" : "main",
-        "revision" : "8755643cb24d770fa2291da61881ff35ca2f4421"
+        "revision" : "db501524815b94b8559e1d302b3bf5728254391f"
       }
     },
     {
@@ -193,7 +193,7 @@
     {
       "identity" : "swift-language",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-language.git",
+      "location" : "https://github.com/coenttb/swift-language",
       "state" : {
         "branch" : "main",
         "revision" : "c47dab7ce0d7c678f699d48ce0bb623bc6138ee8"
