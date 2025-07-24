@@ -26,7 +26,7 @@ extension Target.Dependency {
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
     static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var languages: Self { .product(name: "Languages", package: "swift-language") }
+    static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var logging: Self { .product(name: "Logging", package: "swift-log") }
     static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
@@ -60,7 +60,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-language", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-translating", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
@@ -108,7 +108,7 @@ let package = Package(
         .target(
             name: .coenttbDatabase,
             dependencies: [
-                .languages
+                .translating
             ]
         ),
         .target(
@@ -117,7 +117,7 @@ let package = Package(
                 .coenttbServerDependencies,
                 .casePaths,
                 .dependencies,
-                .languages,
+                .translating,
                 .urlRouting
             ]
         ),

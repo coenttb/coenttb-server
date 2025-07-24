@@ -6,17 +6,17 @@
 //
 
 import Foundation
-import Languages
+import Translating
 import URLRouting
 
 public struct Website<
     Page: Equatable & Sendable
 >: Equatable & Sendable {
-    public let language: Languages.Language?
+    public let language: Language?
     public let page: Page
 
     public init(
-        language: Languages.Language? = nil,
+        language: Language? = nil,
         page: Page
     ) {
         self.language = language
@@ -41,7 +41,7 @@ extension Website {
             Parse(.memberwise(Website.init)) {
                 Optionally {
                     Path {
-                        Parse(.string.representing(Languages.Language.self))
+                        Parse(.string.representing(Language.self))
                     }
                 }
 

@@ -1,5 +1,5 @@
 import Dependencies
-import Languages
+import Translating
 
 public struct PasswordValidation: Sendable {
     public var validate: @Sendable (_ password: String) throws -> Bool
