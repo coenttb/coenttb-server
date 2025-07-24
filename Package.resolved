@@ -1,5 +1,5 @@
 {
-  "originHash" : "b19e1dc4280c1680954bf59235e165da42c5dfa6bfb49ef068ca1a9ebaa2edc9",
+  "originHash" : "a1fa4a3ba9dd77d7b9213eb2be3835a5fa38cc96c3568a357693a37d3d48eeab",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -265,10 +265,19 @@
     {
       "identity" : "swift-parsing",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-parsing.git",
+      "location" : "https://github.com/pointfreeco/swift-parsing",
       "state" : {
         "revision" : "3432cb81164dd3d69a75d0d63205be5fbae2c34b",
         "version" : "0.14.1"
+      }
+    },
+    {
+      "identity" : "swift-password-validation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-password-validation",
+      "state" : {
+        "branch" : "main",
+        "revision" : "56b9887851439e0759cf936d5b723b6d2530283d"
       }
     },
     {
@@ -319,7 +328,7 @@
     {
       "identity" : "xctest-dynamic-overlay",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay.git",
+      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
       "state" : {
         "revision" : "23e3442166b5122f73f9e3e622cd1e4bafeab3b7",
         "version" : "1.6.0"

@@ -32,6 +32,7 @@ extension Target.Dependency {
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
+    static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
 }
 
 let package = Package(
@@ -62,6 +63,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-translating", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-password-validation", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.4.3"),
@@ -108,7 +110,7 @@ let package = Package(
         .target(
             name: .coenttbDatabase,
             dependencies: [
-                .translating
+                .passwordValidation
             ]
         ),
         .target(
