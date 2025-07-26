@@ -1,5 +1,5 @@
 {
-  "originHash" : "9666c977b14f8c412af913baacbb9f0f7fbb7b049a0556fdb5e2a48454b20dbb",
+  "originHash" : "a9e8fe0417b7aa9c6a058cedae928cef346a3f7d46dc1710098b54f022ba7140",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -276,8 +276,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-password-validation",
       "state" : {
-        "branch" : "main",
-        "revision" : "350c846e1aca8cedaf06534c34ab4a3f5db75eea"
+        "revision" : "350c846e1aca8cedaf06534c34ab4a3f5db75eea",
+        "version" : "0.0.1"
       }
     },
     {
@@ -330,8 +330,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-url-routing-translating",
       "state" : {
-        "branch" : "main",
-        "revision" : "bccd2705110cd5e0ed514eb9f8282931bdbc9772"
+        "revision" : "6eba5fd9e62e66874b34c5ab9a7ef8df0625ba02",
+        "version" : "0.0.1"
       }
     },
     {
