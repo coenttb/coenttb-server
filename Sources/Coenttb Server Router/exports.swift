@@ -6,4 +6,4 @@
 //
 
 @_exported import URLRouting
-@_exported import URLRouting_Translating
+@_exported import URLRoutingTranslating

@@ -310,7 +310,7 @@
     {
       "identity" : "swift-translating",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-translating.git",
+      "location" : "https://github.com/coenttb/swift-translating",
       "state" : {
         "revision" : "bcdace8349ec3c02864deec406af01a891232d6a",
         "version" : "0.1.0"
@@ -330,7 +330,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-url-routing-translating",
       "state" : {
-        "revision" : "6eba5fd9e62e66874b34c5ab9a7ef8df0625ba02",
+        "revision" : "c40c9cfa7aab37be56c4aa9d98a43c878f5534b0",
         "version" : "0.0.1"
       }
     },

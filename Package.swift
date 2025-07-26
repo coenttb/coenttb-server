@@ -33,7 +33,7 @@ extension Target.Dependency {
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
-    static var urlRoutingTranslating: Self { .product(name: "URLRouting+Translating", package: "swift-url-routing-translating") }
+    static var urlRoutingTranslating: Self { .product(name: "URLRoutingTranslating", package: "swift-url-routing-translating") }
 }
 
 let package = Package(
