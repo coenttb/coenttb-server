@@ -1,5 +1,5 @@
 {
-  "originHash" : "a9e8fe0417b7aa9c6a058cedae928cef346a3f7d46dc1710098b54f022ba7140",
+  "originHash" : "d16e63b2dde0df4f341b713ec267fe635cc164163721f3af6136615ed6a7747c",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -310,7 +310,7 @@
     {
       "identity" : "swift-translating",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-translating",
+      "location" : "https://github.com/coenttb/swift-translating.git",
       "state" : {
         "revision" : "bcdace8349ec3c02864deec406af01a891232d6a",
         "version" : "0.1.0"
