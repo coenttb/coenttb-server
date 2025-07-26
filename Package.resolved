@@ -1,5 +1,5 @@
 {
-  "originHash" : "a1fa4a3ba9dd77d7b9213eb2be3835a5fa38cc96c3568a357693a37d3d48eeab",
+  "originHash" : "9666c977b14f8c412af913baacbb9f0f7fbb7b049a0556fdb5e2a48454b20dbb",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "3d8596ed08bd13520157f0355e35caed215ffbfa",
-        "version" : "1.6.3"
+        "revision" : "ce592ae52f982c847a4efc0dd881cc9eb32d29f2",
+        "version" : "1.6.4"
       }
     },
     {
@@ -277,7 +277,7 @@
       "location" : "https://github.com/coenttb/swift-password-validation",
       "state" : {
         "branch" : "main",
-        "revision" : "56b9887851439e0759cf936d5b723b6d2530283d"
+        "revision" : "350c846e1aca8cedaf06534c34ab4a3f5db75eea"
       }
     },
     {
@@ -303,17 +303,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
       "state" : {
-        "revision" : "61e4ca4b81b9e09e2ec863b00c340eb13497dac6",
-        "version" : "1.5.0"
+        "revision" : "41daa93a5d229e1548ec86ab527ce4783ca84dda",
+        "version" : "1.6.0"
       }
     },
     {
       "identity" : "swift-translating",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-translating",
+      "location" : "https://github.com/coenttb/swift-translating.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "00e42232490bc595015fdf62d89b7ccdab4a917c"
+        "revision" : "bcdace8349ec3c02864deec406af01a891232d6a",
+        "version" : "0.1.0"
       }
     },
     {
@@ -323,6 +323,15 @@
       "state" : {
         "revision" : "1cfd564259ecb1d324bb718a8f03e513dab738d2",
         "version" : "0.6.2"
+      }
+    },
+    {
+      "identity" : "swift-url-routing-translating",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-url-routing-translating",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bccd2705110cd5e0ed514eb9f8282931bdbc9772"
       }
     },
     {

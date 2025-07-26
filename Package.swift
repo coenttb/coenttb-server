@@ -33,6 +33,7 @@ extension Target.Dependency {
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
+    static var urlRoutingTranslating: Self { .product(name: "URLRouting+Translating", package: "swift-url-routing-translating") }
 }
 
 let package = Package(
@@ -61,9 +62,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-translating", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-environment-variables", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-password-validation", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-url-routing-translating", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.4.3"),
@@ -120,7 +122,8 @@ let package = Package(
                 .casePaths,
                 .dependencies,
                 .translating,
-                .urlRouting
+                .urlRouting,
+                .urlRoutingTranslating
             ]
         ),
         .testTarget(
