@@ -14,7 +14,6 @@ extension Logger: @retroactive TestDependencyKey {
 }
 
 extension Logger {
-    @inlinable
     public func log(
         _ level: Logger.Level,
         _ message: @autoclosure () -> Logger.Message,
