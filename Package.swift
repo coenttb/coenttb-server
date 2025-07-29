@@ -63,7 +63,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-environment-variables", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-environment-variables", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-password-validation", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-url-routing-translating", from: "0.0.1"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
