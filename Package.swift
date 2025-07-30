@@ -7,7 +7,6 @@ extension String {
     static let coenttbServerRouter: Self = "Coenttb Server Router"
     static let coenttbServerEnvVars: Self = "Coenttb Server EnvVars"
     static let coenttbServerDependencies: Self = "Coenttb Server Dependencies"
-    static let coenttbServerUtils: Self = "Coenttb Server Utils"
     static let coenttbDatabase: Self = "Coenttb Database"
 }
 
@@ -16,7 +15,6 @@ extension Target.Dependency {
     static var coenttbServerEnvVars: Self { .target(name: .coenttbServerEnvVars) }
     static var coenttbServerDependencies: Self { .target(name: .coenttbServerDependencies) }
     static var coenttbDatabase: Self { .target(name: .coenttbDatabase) }
-    static var coenttbServerUtils: Self { .target(name: .coenttbServerUtils) }
     static var coenttbServerRouter: Self { .target(name: .coenttbServerRouter) }
 }
 
@@ -51,14 +49,12 @@ let package = Package(
                 .coenttbServerEnvVars,
                 .coenttbServerDependencies,
                 .coenttbDatabase,
-                .coenttbServerUtils,
                 .coenttbServerRouter
             ]
         ),
         .library(name: .coenttbServerEnvVars, targets: [.coenttbServerEnvVars]),
         .library(name: .coenttbServerDependencies, targets: [.coenttbServerDependencies]),
         .library(name: .coenttbDatabase, targets: [.coenttbDatabase]),
-        .library(name: .coenttbServerUtils, targets: [.coenttbServerUtils]),
         .library(name: .coenttbServerRouter, targets: [.coenttbServerRouter])
     ],
     dependencies: [
@@ -83,10 +79,16 @@ let package = Package(
                 .coenttbServerEnvVars,
                 .coenttbServerDependencies,
                 .coenttbDatabase,
-                .coenttbServerUtils,
                 .coenttbServerRouter,
                 .rateLimiter,
                 .foundationExtensions
+            ]
+        ),
+        .testTarget(
+            name: .coenttbServer.tests,
+            dependencies: [
+                .coenttbServer,
+                .dependenciesTestSupport
             ]
         ),
         .target(
@@ -103,12 +105,6 @@ let package = Package(
                 .dependencies,
                 .postgresKit,
                 .issueReporting,
-                .logging
-            ]
-        ),
-        .target(
-            name: .coenttbServerUtils,
-            dependencies: [
                 .logging
             ]
         ),
@@ -156,15 +152,7 @@ let package = Package(
                 .coenttbServerRouter,
                 .dependenciesTestSupport
             ]
-        ),
-        .testTarget(
-            name: .coenttbServerUtils.tests,
-            dependencies: [
-                .coenttbServerUtils,
-                .dependenciesTestSupport
-            ]
         )
-
     ],
     swiftLanguageModes: [.v6]
 )

@@ -8,7 +8,7 @@
 import Foundation
 import Logging
 
-public struct CoenttbLogHandler: LogHandler {
+public struct LogHandler: Logging.LogHandler {
     private let label: String
     private let queue: DispatchQueue
     private let dateFormatter: DateFormatter
