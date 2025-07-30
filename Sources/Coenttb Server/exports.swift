@@ -18,3 +18,5 @@ import FoundationNetworking
 
 @_exported import RateLimiter
 @_exported import Translating
+@_exported import FoundationExtensions
+

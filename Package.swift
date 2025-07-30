@@ -26,9 +26,10 @@ extension Target.Dependency {
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
     static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
+    static var foundationExtensions: Self { .product(name: "FoundationExtensions", package: "swift-foundation-extensions") }
     static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var logging: Self { .product(name: "Logging", package: "swift-log") }
-    static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
+    static var rateLimiter: Self { .product(name: "RateLimiter", package: "swift-ratelimiter") }
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
@@ -61,11 +62,12 @@ let package = Package(
         .library(name: .coenttbServerRouter, targets: [.coenttbServerRouter])
     ],
     dependencies: [
-        .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-environment-variables", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-password-validation", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-url-routing-translating", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-ratelimiter", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-foundation-extensions", from: "0.1.0"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.4.3"),
@@ -83,7 +85,8 @@ let package = Package(
                 .coenttbDatabase,
                 .coenttbServerUtils,
                 .coenttbServerRouter,
-                .rateLimiter
+                .rateLimiter,
+                .foundationExtensions
             ]
         ),
         .target(
