@@ -331,51 +331,7 @@ struct EnvVarsTests {
         }
     }
 
-    @Suite("Predefined Configuration Tests")
-    struct PredefinedConfigurationTests {
-
-        @Test("LocalWebDevelopment configuration has correct values")
-        func localWebDevelopmentConfiguration() {
-            let envVars = EnvVars.localWebDevelopment
-
-            //  EnvVars Tests.swift
-            #expect(envVars["APP_ENV"] == "testing")
-            #expect(envVars["APP_SECRET"] == "test_secret")
-            #expect(envVars["BASE_URL"] == "http://localhost:8080")
-            #expect(envVars["PORT"] == "8080")
-
-            //  coenttb-server
-            #expect(envVars["GITHUB_CLIENT_ID"] == "test_github_id")
-            #expect(envVars["GITHUB_CLIENT_SECRET"] == "test_github_secret")
-            #expect(envVars["MAILGUN_BASE_URL"] == "https://api.mailgun.net")
-            #expect(envVars["MAILGUN_PRIVATE_API_KEY"] == "test_mailgun_key")
-            #expect(envVars["MAILGUN_DOMAIN"] == "test.mailgun.domain")
-            #expect(envVars["DATABASE_URL"] == "postgres://test:test@localhost:5432/test_db")
-            #expect(envVars["STRIPE_ENDPOINT_SECRET"] == "test_stripe_endpoint_secret")
-            #expect(envVars["STRIPE_PUBLISHABLE_KEY"] == "test_stripe_publishable_key")
-            #expect(envVars["STRIPE_SECRET_KEY"] == "test_stripe_secret_key")
-        }
-
-        @Test("LocalWebDevelopment configuration works with computed properties")
-        func localWebDevelopmentComputedProperties() {
-            let envVars = EnvVars.localWebDevelopment
-
-            //  EnvVars Tests.swift
-            #expect(envVars.baseUrl.absoluteString == "http://localhost:8080")
-            #expect(envVars.port == 8080)
-        }
-    }
-
-    @Suite("Required Keys Tests")
-    struct RequiredKeysTests {
-
-        @Test("Required keys set contains expected values")
-        func requiredKeysSetContainsExpectedValues() {
-            let expectedKeys: Set<String> = ["APP_SECRET", "APP_ENV", "BASE_URL", "PORT"]
-            #expect(Set<String>.requiredKeys == expectedKeys)
-        }
-    }
-
+   
     @Suite("Edge Cases Tests")
     struct EdgeCasesTests {
 

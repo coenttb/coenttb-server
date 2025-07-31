@@ -12,7 +12,8 @@ import DependenciesTestSupport
 
 @Suite(
     "PasswordValidation Tests",
-    .dependency(\.passwordValidation, .default)
+    .dependency(\.passwordValidation, .default),
+    .dependency(\.locale, .english)
 )
 struct PasswordValidationTests {
 

@@ -15,13 +15,14 @@ extension Target.Dependency {
     static var coenttbServerEnvVars: Self { .target(name: .coenttbServerEnvVars) }
     static var coenttbServerDependencies: Self { .target(name: .coenttbServerDependencies) }
     static var coenttbDatabase: Self { .target(name: .coenttbDatabase) }
-    static var coenttbServerRouter: Self { .target(name: .coenttbServerRouter) }
 }
 
 extension Target.Dependency {
     static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
     static var serverFoundationEnvVars: Self { .product(name: "ServerFoundationEnvVars", package: "swift-server-foundation") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
+    static var language: Self { .product(name: "Language", package: "swift-translating") }
+    static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
 }
 
 let package = Package(
@@ -38,29 +39,17 @@ let package = Package(
                 .coenttbServerEnvVars,
                 .coenttbServerDependencies,
                 .coenttbDatabase,
-                .coenttbServerRouter
             ]
         ),
         .library(name: .coenttbServerEnvVars, targets: [.coenttbServerEnvVars]),
         .library(name: .coenttbServerDependencies, targets: [.coenttbServerDependencies]),
         .library(name: .coenttbDatabase, targets: [.coenttbDatabase]),
-        .library(name: .coenttbServerRouter, targets: [.coenttbServerRouter])
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/swift-server-foundation", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-environment-variables", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-password-validation", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-url-routing-translating", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-ratelimiter", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-foundation-extensions", from: "0.1.0"),
-        .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
-        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.4.3"),
-        .package(url: "https://github.com/pointfreeco/swift-url-routing", from: "0.6.2"),
-        .package(url: "https://github.com/swift-server/async-http-client", from: "1.26.1"),
-        .package(url: "https://github.com/vapor/postgres-kit", from: "2.12.0"),
-        .package(url: "https://github.com/apple/swift-log", from: "1.0.0")
+        .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.10.0"),
     ],
     targets: [
         .target(
@@ -69,9 +58,9 @@ let package = Package(
                 .coenttbServerEnvVars,
                 .coenttbServerDependencies,
                 .coenttbDatabase,
-                .coenttbServerRouter,
                 .serverFoundation,
-                .serverFoundationEnvVars
+                .serverFoundationEnvVars,
+                .tagged
             ]
         ),
         .testTarget(
@@ -84,7 +73,8 @@ let package = Package(
         .target(
             name: .coenttbServerEnvVars,
             dependencies: [
-                .serverFoundationEnvVars
+                .serverFoundationEnvVars,
+                .language
             ]
         ),
         .target(
@@ -96,13 +86,6 @@ let package = Package(
         .target(
             name: .coenttbDatabase,
             dependencies: [
-                .serverFoundation
-            ]
-        ),
-        .target(
-            name: .coenttbServerRouter,
-            dependencies: [
-                .coenttbServerDependencies,
                 .serverFoundation
             ]
         ),
@@ -127,13 +110,6 @@ let package = Package(
                 .dependenciesTestSupport
             ]
         ),
-        .testTarget(
-            name: .coenttbServerRouter.tests,
-            dependencies: [
-                .coenttbServerRouter,
-                .dependenciesTestSupport
-            ]
-        )
     ],
     swiftLanguageModes: [.v6]
 )

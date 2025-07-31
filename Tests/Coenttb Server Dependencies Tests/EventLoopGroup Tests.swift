@@ -19,7 +19,7 @@ struct EventLoopGroupTests {
 
     @Test("MainEventLoopGroup has test value")
     func mainEventLoopGroupHasTestValue() async throws {
-        let testValue = MainEventLoopGroupKey.testValue
+        let testValue = MainEventLoopGroup.testValue
         #expect(testValue is EmbeddedEventLoop)
     }
 
