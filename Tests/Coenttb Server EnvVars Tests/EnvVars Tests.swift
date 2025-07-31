@@ -40,7 +40,7 @@ struct EnvVarsTests {
 
             // Test that required keys are present
             #expect(envVars["APP_SECRET"] != nil)
-            #expect(envVars["APP_ENV"] != nil)
+            #expect(envVars["ENV"] != nil)
             #expect(envVars["BASE_URL"] != nil)
             #expect(envVars["PORT"] != nil)
         }
@@ -111,7 +111,7 @@ struct EnvVarsTests {
             //  EnvVars Tests.swift
             let expectedKeys = [
                 "ALLOWED_INSECURE_HOSTS",
-                "APP_ENV",
+                "ENV",
                 "APP_SECRET",
                 "BASE_URL",
                 "CANONICAL_HOST",

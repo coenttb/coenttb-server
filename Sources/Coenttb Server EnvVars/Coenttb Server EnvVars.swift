@@ -12,8 +12,8 @@ import Language
 
 extension EnvVars {
     public var appEnv: AppEnv {
-        get { AppEnv(rawValue: self["APP_ENV"]!)! }
-        set { self["APP_ENV"] = newValue.rawValue }
+        get { AppEnv(rawValue: self["ENV"]!)! }
+        set { self["ENV"] = newValue.rawValue }
     }
 }
 
