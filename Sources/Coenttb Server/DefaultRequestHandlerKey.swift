@@ -2,9 +2,7 @@ import Dependencies
 import Foundation
 import IssueReporting
 
-#if canImport(FoundationNetworking)
-import FoundationNetworking
-#endif
+import Foundation
 
 extension URLRequest {
     public struct Handler: Sendable {
