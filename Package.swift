@@ -19,20 +19,9 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
-    static var asyncHttpClient: Self { .product(name: "AsyncHTTPClient", package: "async-http-client") }
-    static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
-    static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
+    static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
+    static var serverFoundationEnvVars: Self { .product(name: "ServerFoundationEnvVars", package: "swift-server-foundation") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
-    static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var foundationExtensions: Self { .product(name: "FoundationExtensions", package: "swift-foundation-extensions") }
-    static var translating: Self { .product(name: "Translating", package: "swift-translating") }
-    static var logging: Self { .product(name: "Logging", package: "swift-log") }
-    static var rateLimiter: Self { .product(name: "RateLimiter", package: "swift-ratelimiter") }
-    static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
-    static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
-    static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
-    static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
-    static var urlRoutingTranslating: Self { .product(name: "URLRoutingTranslating", package: "swift-url-routing-translating") }
 }
 
 let package = Package(
@@ -58,6 +47,7 @@ let package = Package(
         .library(name: .coenttbServerRouter, targets: [.coenttbServerRouter])
     ],
     dependencies: [
+        .package(url: "https://github.com/coenttb/swift-server-foundation", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-environment-variables", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-password-validation", from: "0.0.1"),
@@ -80,8 +70,8 @@ let package = Package(
                 .coenttbServerDependencies,
                 .coenttbDatabase,
                 .coenttbServerRouter,
-                .rateLimiter,
-                .foundationExtensions
+                .serverFoundation,
+                .serverFoundationEnvVars
             ]
         ),
         .testTarget(
@@ -94,35 +84,26 @@ let package = Package(
         .target(
             name: .coenttbServerEnvVars,
             dependencies: [
-                .environmentVariables,
-                .logging
+                .serverFoundationEnvVars
             ]
         ),
         .target(
             name: .coenttbServerDependencies,
             dependencies: [
-                .asyncHttpClient,
-                .dependencies,
-                .postgresKit,
-                .issueReporting,
-                .logging
+                .serverFoundation
             ]
         ),
         .target(
             name: .coenttbDatabase,
             dependencies: [
-                .passwordValidation
+                .serverFoundation
             ]
         ),
         .target(
             name: .coenttbServerRouter,
             dependencies: [
                 .coenttbServerDependencies,
-                .casePaths,
-                .dependencies,
-                .translating,
-                .urlRouting,
-                .urlRoutingTranslating
+                .serverFoundation
             ]
         ),
         .testTarget(

@@ -12,16 +12,16 @@ public struct LogHandler: Logging.LogHandler {
     private let label: String
     private let queue: DispatchQueue
     private let dateFormatter: DateFormatter
-    
+
     public var logLevel: Logger.Level
     public var metadataProvider: Logger.MetadataProvider?
-    
+
     private var _metadata: Logger.Metadata
     public var metadata: Logger.Metadata {
         get { queue.sync { _metadata } }
         set { queue.sync { _metadata = newValue } }
     }
-    
+
     public init(
         label: String,
         logLevel: Logger.Level = .info,
@@ -34,12 +34,12 @@ public struct LogHandler: Logging.LogHandler {
         self.queue = DispatchQueue(label: "com.coenttb.logging.\(label)")
         self.dateFormatter = .log
     }
-    
+
     public subscript(metadataKey metadataKey: String) -> Logger.Metadata.Value? {
         get { queue.sync { _metadata[metadataKey] } }
         set { queue.sync { _metadata[metadataKey] = newValue } }
     }
-    
+
     public func log(
         level: Logger.Level,
         message: Logger.Message,
@@ -59,25 +59,25 @@ public struct LogHandler: Logging.LogHandler {
                 message.description,
                 mergedMetadata
             ].compactMap { $0 }
-            
+
             let fullMessage = components.joined(separator: " | ")
             FileHandle.standardError.write(Data((fullMessage + "\n").utf8))
         }
     }
-    
+
     private func mergedMetadata(_ explicitMetadata: Logger.Metadata?) -> String? {
         var metadata = _metadata
-        
+
         if let provided = metadataProvider?.get(), !provided.isEmpty {
             metadata.merge(provided) { _, new in new }
         }
-        
+
         if let explicit = explicitMetadata, !explicit.isEmpty {
             metadata.merge(explicit) { _, new in new }
         }
-        
+
         guard !metadata.isEmpty else { return nil }
-        
+
         return metadata
             .sorted(by: { $0.key < $1.key })
             .map { "\($0.key)=\($0.value)" }
