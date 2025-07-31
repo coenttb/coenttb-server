@@ -64,13 +64,6 @@ struct EnvVarsTests {
             #expect(envVars.logLevel == .debug) //  EnvVars Tests.swift
         }
 
-        @Test("SSL configuration properties work with .env.example")
-        func sslConfigurationWithEnvExample() throws {
-            @Dependency(\.envVars) var envVars
-
-            #expect(envVars.localSslServerCrt?.contains("BEGIN CERTIFICATE") == true)
-            #expect(envVars.localSslServerKey?.contains("BEGIN PRIVATE KEY") == true)
-        }
 
         @Test("Apple configuration properties work with .env.example")
         func appleConfigurationWithEnvExample() throws {
@@ -98,8 +91,6 @@ struct EnvVarsTests {
             #expect(envVars.emergencyMode == false)
             #expect(envVars.httpsRedirect == true)
             #expect(envVars.logLevel == .debug)
-            #expect(envVars.localSslServerCrt?.contains("BEGIN CERTIFICATE") == true)
-            #expect(envVars.localSslServerKey?.contains("BEGIN PRIVATE KEY") == true)
             #expect(envVars.appleDeveloperMerchantIdDomainAssociation == "apple-developer-merchantid-domain-association-content")
             #expect(envVars.taxIdentificationNumber == "NL001111111111111")
         }

@@ -1,7 +1,7 @@
 import Dependencies
 import Foundation
 import IssueReporting
-
+import ServerFoundation
 import Foundation
 
 extension URLRequest {
