@@ -4,6 +4,10 @@ import IssueReporting
 import ServerFoundation
 import Foundation
 
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 extension URLRequest {
     public struct Handler: Sendable {
         public var debug = false
