@@ -135,11 +135,13 @@ extension URLRequest {
                     }
                     
                     // Only wrap non-RequestError errors
+                    let rawDataString = String(data: data, encoding: .utf8) ?? "Unable to convert data to UTF-8 string"
                     let context = DecodingContext(
                         originalError: decodeError.localizedDescription,
                         attemptedType: String(describing: type),
                         fileID: String(describing: fileID),
-                        line: line
+                        line: line,
+                        rawData: rawDataString
                     )
                     if debug { 
                         logger.error("Direct decode failed: \(context.description)")
@@ -202,11 +204,13 @@ extension URLRequest {
             do {
                 return try self.decoder.decode(type, from: data)
             } catch {
+                let rawDataString = String(data: data, encoding: .utf8) ?? "Unable to convert data to UTF-8 string"
                 let context = DecodingContext(
                     originalError: error.localizedDescription,
                     attemptedType: String(describing: type),
                     fileID: String(describing: fileID),
-                    line: line
+                    line: line,
+                    rawData: rawDataString
                 )
                 // Don't reportIssue here as this is often an expected failure (e.g., envelope vs direct decode attempts)
                 throw RequestError.decodingError(context)
@@ -317,8 +321,28 @@ public struct DecodingContext: Equatable, Sendable {
     public let fileID: String
     /// The line number where the error occurred
     public let line: UInt
+    /// The raw data that failed to decode (for debugging)
+    public let rawData: String?
+    
+    public init(
+        originalError: String,
+        attemptedType: String,
+        fileID: String,
+        line: UInt,
+        rawData: String? = nil
+    ) {
+        self.originalError = originalError
+        self.attemptedType = attemptedType
+        self.fileID = fileID
+        self.line = line
+        self.rawData = rawData
+    }
     
     public var description: String {
-        "\(originalError) (attempted type: \(attemptedType) at \(fileID):\(line))"
+        var desc = "\(originalError) (attempted type: \(attemptedType) at \(fileID):\(line))"
+        if let rawData = rawData {
+            desc += "\nRaw data received: \(rawData)"
+        }
+        return desc
     }
 }

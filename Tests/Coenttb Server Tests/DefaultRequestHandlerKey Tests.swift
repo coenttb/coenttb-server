@@ -393,6 +393,24 @@ struct RequestErrorTests {
         #expect(description.contains("123"))
     }
     
+    @Test("DecodingContext includes raw data in description")
+    func decodingContextIncludesRawDataInDescription() {
+        let context = DecodingContext(
+            originalError: "Invalid JSON",
+            attemptedType: "Response",
+            fileID: "APIClient.swift",
+            line: 45,
+            rawData: "{\"error\": \"Server unavailable\"}"
+        )
+        
+        let description = context.description
+        #expect(description.contains("Invalid JSON"))
+        #expect(description.contains("Response"))
+        #expect(description.contains("APIClient.swift"))
+        #expect(description.contains("45"))
+        #expect(description.contains("Raw data received: {\"error\": \"Server unavailable\"}"))
+    }
+    
     @Test("DecodingContext conforms to Equatable")
     func decodingContextConformsToEquatable() {
         let context1 = DecodingContext(
