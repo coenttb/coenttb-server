@@ -46,7 +46,7 @@ let package = Package(
         .library(name: .coenttbDatabase, targets: [.coenttbDatabase]),
     ],
     dependencies: [
-        .package(url: "https://github.com/coenttb/swift-server-foundation", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-server-foundation", from: "0.0.2"),
         .package(url: "https://github.com/coenttb/swift-translating", from: "0.0.1"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.10.0"),
