@@ -277,9 +277,8 @@ extension DependencyValues {
     }
 }
 
-extension URLRequest.Handler: DependencyKey {
+extension URLRequest.Handler: TestDependencyKey {
     public static var testValue: Self { .init(debug: true) }
-    public static var liveValue: Self { .init(debug: false) }
 }
 
 /// Standard error response format from the server.
