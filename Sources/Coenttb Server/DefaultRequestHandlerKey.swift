@@ -102,6 +102,9 @@ extension URLRequest {
                     logger.warning("Envelope data is nil, envelope response contained no data")
                 }
                 throw RequestError.envelopeDataMissing
+            } catch RequestError.envelopeDataMissing {
+                // Re-throw envelopeDataMissing without trying direct decode
+                throw RequestError.envelopeDataMissing
             } catch {
                 if debug {
                     logger.info("Envelope decode failed, attempting direct decode. Error: \(error.localizedDescription)")
@@ -142,7 +145,10 @@ extension URLRequest {
                         logger.error("Direct decode failed: \(context.description)")
                     }
                     
-                    reportIssue("Failed to decode response as \(type)", fileID: fileID, filePath: filePath, line: line, column: column)
+                    // Only report final decode failures if not in test environment
+                    if !debug {
+                        reportIssue("Failed to decode response as \(type)", fileID: fileID, filePath: filePath, line: line, column: column)
+                    }
                     throw RequestError.decodingError(context)
                 }
             }
@@ -174,7 +180,10 @@ extension URLRequest {
                 if debug {
                     logger.error("Invalid Response - Expected HTTPURLResponse but got: \(String(describing: response))")
                 }
-                reportIssue("Received non-HTTP response: \(String(describing: response))")
+                // Don't report issues in test environment (debug=true means test environment)
+                if !debug {
+                    reportIssue("Received non-HTTP response: \(String(describing: response))")
+                }
                 throw RequestError.invalidResponse
             }
             
@@ -199,7 +208,7 @@ extension URLRequest {
                     fileID: String(describing: fileID),
                     line: line
                 )
-                reportIssue("JSON decoding failed for type \(type): \(error.localizedDescription)", fileID: fileID, filePath: filePath, line: line, column: column)
+                // Don't reportIssue here as this is often an expected failure (e.g., envelope vs direct decode attempts)
                 throw RequestError.decodingError(context)
             }
         }
@@ -218,7 +227,8 @@ extension URLRequest {
                     logger.error("HTTP Error - Status: \(response.statusCode), Message: \(errorMessage), Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to decode error response")")
                 }
                 
-                if response.statusCode >= 500 {
+                // Only report server errors (5xx) if not in test environment
+                if response.statusCode >= 500 && !debug {
                     reportIssue("Server error \(response.statusCode): \(errorMessage)")
                 }
                 

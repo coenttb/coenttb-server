@@ -18,7 +18,9 @@ import ServerFoundation
 import FoundationNetworking
 #endif
 
-@Suite("DefaultRequestHandlerKey Tests")
+@Suite(
+    "DefaultRequestHandlerKey Tests"
+)
 struct DefaultRequestHandlerKeyTests {
     
     // MARK: - Test Models
@@ -39,6 +41,13 @@ struct DefaultRequestHandlerKeyTests {
     
     private func mockSession(data: Data, response: URLResponse) -> @Sendable (URLRequest) async throws -> (Data, URLResponse) {
         return { _ in (data, response) }
+    }
+    
+    private func createTestEncoder() -> JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
     }
     
     private func mockHTTPResponse(statusCode: Int, url: URL = URL(string: "https://example.com")!) -> HTTPURLResponse {
@@ -102,13 +111,13 @@ struct DefaultRequestHandlerKeyTests {
     @Test("Handler decodes direct JSON response successfully")
     func handlerDecodesDirectJSONResponseSuccessfully() async throws {
         let testData = TestResponse(id: 1, message: "test", createdAt: Date())
-        let jsonData = try JSONEncoder().encode(testData)
+        let jsonData = try createTestEncoder().encode(testData)
         let response = mockHTTPResponse(statusCode: 200)
         
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             let result = try await handler(for: request, decodingTo: TestResponse.self)
@@ -122,13 +131,13 @@ struct DefaultRequestHandlerKeyTests {
     func handlerDecodesEnvelopeResponseSuccessfully() async throws {
         let testData = TestResponse(id: 2, message: "envelope test", createdAt: nil)
         let envelope = Envelope(success: true, data: testData, message: nil)
-        let jsonData = try JSONEncoder().encode(envelope)
+        let jsonData = try createTestEncoder().encode(envelope)
         let response = mockHTTPResponse(statusCode: 200)
         
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             let result = try await handler(for: request, decodingTo: TestResponse.self)
@@ -145,7 +154,7 @@ struct DefaultRequestHandlerKeyTests {
         try await withDependencies {
             $0.defaultSession = mockSession(data: Data(), response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             try await handler(for: request)
@@ -162,7 +171,7 @@ struct DefaultRequestHandlerKeyTests {
         try await withDependencies {
             $0.defaultSession = mockSession(data: Data(), response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             await #expect(throws: RequestError.invalidResponse) {
@@ -181,7 +190,7 @@ struct DefaultRequestHandlerKeyTests {
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             await #expect(throws: RequestError.httpError(statusCode: 404, message: errorMessage)) {
@@ -200,7 +209,7 @@ struct DefaultRequestHandlerKeyTests {
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             await #expect(throws: RequestError.httpError(statusCode: 500, message: errorMessage)) {
@@ -212,13 +221,13 @@ struct DefaultRequestHandlerKeyTests {
     @Test("Handler throws RequestError.envelopeDataMissing when envelope has no data")
     func handlerThrowsEnvelopeDataMissingWhenEnvelopeHasNoData() async throws {
         let envelope = Envelope<TestResponse>(success: true, data: nil, message: "No data")
-        let jsonData = try JSONEncoder().encode(envelope)
+        let jsonData = try createTestEncoder().encode(envelope)
         let response = mockHTTPResponse(statusCode: 200)
         
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             await #expect(throws: RequestError.envelopeDataMissing) {
@@ -235,7 +244,7 @@ struct DefaultRequestHandlerKeyTests {
         try await withDependencies {
             $0.defaultSession = mockSession(data: invalidData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             await #expect(throws: RequestError.self) {
@@ -251,7 +260,7 @@ struct DefaultRequestHandlerKeyTests {
         try await withDependencies {
             $0.defaultSession = { _ in throw URLError(.networkConnectionLost) }
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             
             await #expect(throws: URLError.self) {
                 try await handler(for: request, decodingTo: TestResponse.self)
@@ -283,8 +292,9 @@ struct DefaultRequestHandlerKeyTests {
         
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
+            $0.defaultRequestHandler = URLRequest.Handler(decoder: customDecoder)
         } operation: {
-            let handler = URLRequest.Handler(decoder: customDecoder)
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             let result = try await handler(for: request, decodingTo: TestResponse.self)
@@ -300,13 +310,13 @@ struct DefaultRequestHandlerKeyTests {
     @Test("Handler falls back to direct decode when envelope decode fails")
     func handlerFallsBackToDirectDecodeWhenEnvelopeDecodeFails() async throws {
         let testData = TestResponse(id: 3, message: "fallback test", createdAt: nil)
-        let jsonData = try JSONEncoder().encode(testData)
+        let jsonData = try createTestEncoder().encode(testData)
         let response = mockHTTPResponse(statusCode: 200)
         
         try await withDependencies {
             $0.defaultSession = mockSession(data: jsonData, response: response)
         } operation: {
-            let handler = URLRequest.Handler()
+            @Dependency(\.defaultRequestHandler) var handler
             let request = createTestRequest()
             
             let result = try await handler(for: request, decodingTo: TestResponse.self)

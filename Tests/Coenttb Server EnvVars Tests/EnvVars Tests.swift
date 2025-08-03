@@ -24,9 +24,7 @@ let packageRoot = URL(fileURLWithPath: #filePath)
 @Suite(
     "EnvVars Tests",
     .dependencies {
-        $0.envVars = try! .live(
-            localEnvFile: packageRoot.appendingPathComponent(".env.example")
-        )
+        $0.envVars = try! .live(environmentConfiguration: .projectRoot(packageRoot, environment: "development"))
     }
 )
 struct EnvVarsTests {
