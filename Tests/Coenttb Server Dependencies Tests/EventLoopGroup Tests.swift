@@ -7,6 +7,9 @@
 
 @testable import Coenttb_Server_Dependencies
 import Testing
+import Dependencies
+import NIO
+import ServerFoundation
 
 @Suite("EventLoopGroup Tests")
 struct EventLoopGroupTests {

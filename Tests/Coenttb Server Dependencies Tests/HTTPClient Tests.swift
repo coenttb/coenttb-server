@@ -7,6 +7,7 @@
 
 @testable import Coenttb_Server_Dependencies
 import Testing
+import ServerFoundation
 
 @Suite("HTTPClient Tests")
 struct HTTPClientTests {

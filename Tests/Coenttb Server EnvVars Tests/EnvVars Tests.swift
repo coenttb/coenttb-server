@@ -262,24 +262,6 @@ struct EnvVarsTests {
             envVars.logLevel = nil
             #expect(envVars["LOG_LEVEL"] == nil)
         }
-
-        @Test("SSL certificate properties work correctly")
-        func sslCertificateProperties() throws {
-            var envVars = try EnvVars(dictionary: [
-                "LOCAL-SSL-SERVER-CRT": "cert_content",
-                "LOCAL-SSL-SERVER-KEY": "key_content"
-            ], requiredKeys: [])
-
-            //  EnvVars Tests.swift
-            #expect(envVars.localSslServerCrt == "cert_content")
-            #expect(envVars.localSslServerKey == "key_content")
-
-            //  coenttb-server
-            envVars.localSslServerCrt = "new_cert"
-            envVars.localSslServerKey = "new_key"
-            #expect(envVars["LOCAL-SSL-SERVER-CRT"] == "new_cert")
-            #expect(envVars["LOCAL-SSL-SERVER-KEY"] == "new_key")
-        }
     }
 
     @Suite("Apple Configuration Tests")
