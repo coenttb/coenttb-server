@@ -7,3 +7,8 @@
 
 @_exported import PasswordValidation
 @_exported import EmailAddress
+@_exported @preconcurrency import Fluent
+@_exported @preconcurrency import FluentPostgresDriver
+@_exported import PostgresKit
+@_exported import PostgresNIO
+@_exported import ServerFoundationVapor
